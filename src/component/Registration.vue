@@ -2,7 +2,7 @@
     <div id="registration">
         <h3>Register here</h3>
         <hr>
-        <div class="row" v-for="user in users">
+        <div class="row" v-for="user in users" :key="user.userId">
             <h4>{{ user.name }}</h4>
             <button @click="registerUser(user)">Register</button>
         </div>
