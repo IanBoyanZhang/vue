@@ -1,108 +1,85 @@
 <html>
 <header>
 <style>
-* {box-sizing: border-box;}
-
-.wrapper {
-    max-width: 1024px;
-    margin: 0 auto;
-    font: 1.2em Helvetica, arial, sans-serif;
+.grid-container {
+    display: grid;
+    height: 100%;
+    grid-template: repeat(2, [row] minmax(100vh, 5fr)) / repeat(3, [col] 1fr);
+    margin: 0px;
 }
 
-.wrapper > * {
-    border: 2px solid #f08c00;
-    background-color: #ffec99;
-    border-radius: 5px;
-    padding: 10px;
+.header {
+    grid-column: col 1 / span 3;
+    grid-row: row 1;
+    /* height: 50px; */
+    z-index: 3;
 }
 
-.main-head {
-  grid-area: header;
-}
-.content {
-  grid-area: content;
-}
-.main-nav {
-  grid-area: nav;
-}
-.side {
-  grid-area: sidebar;
-}
-.ad {
-  grid-area: ad;
-}
-.main-footer {
-  grid-area: footer;
-}
-.wrapper {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-areas: 
-    "header"
-    /* "nav" */
-    "content"
-    /* "sidebar" */
-    /* "ad" */
-    "footer";
-}
-@media (min-width: 500px) {
-  .wrapper {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-      "header"
-      /* "nav     nav" */
-      "content"
-      "footer"
-      /* "ad      footer"; */
-  }
-  /* nav ul {
+.header .flex-container {
     display: flex;
+    position: fixed;
+    flex-direction: row;
     justify-content: space-between;
-  } */
-}
-@media (min-width: 700px) {
-  .wrapper {
-    grid-template-columns: 1fr 1fr 1fr;
-    /* grid-template-areas: 
-      "header header  header"
-      "nav    content sidebar"
-      "nav    content ad"
-      "footer footer  footer"
-   } */
-    grid-template-areas: 
-      "header header header"
-      "content content content"
-      "content content content"
-      "footer footer footer"
-   }
-   /* nav ul {
-     flex-direction: column;
-   } */
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 10px;
+    border: 1px solid black;
 }
 
+.header .flex-container .left{
+    color: red;    
+}
+
+.header .flex-container .right {
+    color: blue;
+}
+
+.left {
+    grid-column: col 1;
+    grid-row: row 1 / span 2;
+    background: linear-gradient(to top, #d38312, #a83279);
+    z-index: 1;
+    opacity: 0.8;
+}
+
+.main {
+    grid-column: col 1 / span 3;
+    grid-row: row 1 / span 2;
+    background: linear-gradient(to right, #ffb347, #ffcc33);
+    opacity: 0.5;
+}
+
+.right {
+    grid-column: col 3;
+    grid-row: row 1 / span 2;
+    background: linear-gradient(to top, #d38312, #a83279);
+    opacity: 0.8;
+}
 
 </style>
 
 </header>
-        
+
 <body>
-    <section class="wrapper">
-        <header class="main-head">The header</header>
-        <!-- <nav class="main-nav">
-            <ul>
-                <li><a href="">Nav 1</a></li>
-                <li><a href="">Nav 2</a></li>
-                <li><a href="">Nav 3</a></li>
-            </ul>
-        </nav> -->
-        <article class="content">
-            <h1>Main article area</h1>
-            <p>In this layout, we display the areas in source order for any screen less that 500 pixels wide. We go to a two column layout, and then to a three column layout by redefining the grid, and the placement of items on the grid.</p>
-        </article> 
-        <!-- <aside class="side">Sidebar</aside>
-        <div class="ad">Advertising</div> -->
-        <footer class="main-footer">The footer</footer>
+    <section class="grid-container">
+        <div class="header">
+            <div class="flex-container">
+                <button>1</button>
+                <button>1</button>
+                <!-- <button class="toggle-right">2</button> -->
+            </div>
+        </div>
+        <div class="left">
+            left
+        </div>
+        <div class="main">
+            main
+        </div>
+        <div class="right">
+            right
+        </div>
     </section>
 </body>
-        
+
 </html>
